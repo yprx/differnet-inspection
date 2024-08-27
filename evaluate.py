@@ -11,8 +11,7 @@ def get_anomaly_score(model, image_path, transforms):
     transformed_imgs = torch.stack([tf(img) for tf in transforms])
     z = model(transformed_imgs)
     anomaly_score = torch.mean(z ** 2)
-    print("image: %s, score: %.2f" % (image_path, anomaly_score))
-    return anomaly_score
+    return anomaly_score.item()
 
 def evaluate(model_name, image_folder, fixed_transforms=True):
     model = load_model(model_name)
@@ -27,5 +26,5 @@ def evaluate(model_name, image_folder, fixed_transforms=True):
     for f in files:
         get_anomaly_score(model, join(image_folder, f), transforms)
 
-image_folder = 'dummy_dataset/dummy_class/train/good'
-evaluate(c.modelname, image_folder, fixed_transforms=True)
+#image_folder = 'dummy_dataset/dummy_class/train/good'
+#evaluate(c.modelname, image_folder, fixed_transforms=True)

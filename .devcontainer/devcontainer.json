@@ -1,0 +1,17 @@
+{
+  "name": "differnet-inspection",
+  "build": {
+    "dockerfile": "./Dockerfile",
+    "context": ".."
+  },
+  "runArgs": [
+    "--runtime=nvidia",
+    "--gpus=all"
+  ],
+  "containerEnv": {
+    "NVIDIA_VISIBLE_DEVICES": "all"
+  },
+  "mounts": [
+  ],
+  "remoteUser": "root"
+}
